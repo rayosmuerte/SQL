@@ -1,0 +1,96 @@
+CREATE TABLE superstore (
+    item_id INTEGER PRIMARY KEY,
+    item_name TEXT,
+    category TEXT,
+    price DECIMAL(10, 2),
+    stock_quantity INTEGER,
+    average_rating DECIMAL(3, 2)
+);
+
+INSERT INTO superstore (item_id, item_name, category, price, stock_quantity, average_rating)
+VALUES
+    (1, 'Stainless Steel Cookware Set', 'Kitchen Supplies', 89.99, 50, 4.6),
+    (2, 'Memory Foam Mattress', 'Furnishings', 499.99, 30, 4.8),
+    (3, 'Smart LED TV', 'Electronics', 549.00, 20, 4.5),
+    (4, 'Robot Vacuum Cleaner', 'Appliances', 199.50, 40, 4.3),
+    (5, 'Wireless Bluetooth Speaker', 'Electronics', 39.99, 60, 4.2),
+    (6, 'Non-Stick Baking Set', 'Kitchen Supplies', 29.95, 80, 4.4),
+    (7, 'Cotton Bedding Set', 'Furnishings', 89.00, 25, 4.7),
+    (8, 'Smart Home Security Camera', 'Electronics', 79.95, 15, 4.1),
+    (9, 'Air Purifier', 'Appliances', 129.50, 35, 4.6),
+    (10, 'Premium Coffee Maker', 'Kitchen Supplies', 79.99, 50, 4.9),
+    (11, 'Ergonomic Office Chair', 'Furnishings', 189.00, 20, 4.5),
+    (12, 'Wireless Earbuds', 'Electronics', 49.99, 75, 4.3),
+    (13, 'Slow Cooker', 'Appliances', 49.95, 30, 4.7),
+    (14, 'Cutlery Set', 'Kitchen Supplies', 34.50, 40, 4.4),
+    (15, 'Cozy Throw Blanket', 'Furnishings', 24.99, 100, 4.2);
+
+
+Check out the code I wrote for "superstore"
+-- superstore
+
+-- Query 1 table
+SELECT *
+FROM superstore;
+
+-- Query 2 table limit 5
+SELECT *
+FROM superstore
+LIMIT 5;
+
+-- Query 3 ascending order
+SELECT item_id, item_name, category, price, stock_quantity, average_rating
+FROM superstore
+ORDER BY price ASC;
+
+-- Query 4 descending order
+SELECT item_id, item_name, category, price, stock_quantity, average_rating
+FROM superstore
+ORDER BY price DESC;
+
+-- Query 5 average price of all items
+SELECT AVG(price) average_price
+FROM superstore;
+
+-- Query 6 total sum of all prices
+SELECT SUM(price) total_price
+FROM superstore;
+
+-- Query 7 minimum and maximum item prices
+SELECT MIN(price) min_price, MAX(price) max_price
+FROM superstore;
+
+-- Query 8 total number of items
+SELECT COUNT(*) total_items
+FROM superstore;
+
+-- Query 9 average price for items in the "Kitchen Supplies"
+SELECT AVG(price) average_kitchen_price
+FROM superstore
+WHERE category = 'Kitchen Supplies';
+
+-- Query 10 total price of "Kitchen Supplies"
+SELECT SUM(price) total_kitchen_price
+FROM superstore
+WHERE category = 'Kitchen Supplies';
+
+-- Query 11 minimum and maximum price of "Kitchen Supplies"
+SELECT MIN(price) min_kitchen_price, MAX(price) max_kitchen_price
+FROM superstore
+WHERE category = 'Kitchen Supplies';
+
+-- Query 12 count of "Kitchen Supplies" items
+SELECT COUNT(*) kitchen_items_count
+FROM superstore
+WHERE category = 'Kitchen Supplies';
+
+-- Query 13 count the items in the "Electronics" category that cost more than $50
+SELECT COUNT(*) expensive_electronics_count
+FROM superstore
+WHERE category = 'Electronics' AND price > 50;
+
+-- Query 14 list items with an average rating above 4.5
+SELECT item_id, item_name, category, price, average_rating
+FROM superstore
+WHERE average_rating > 4.5
+ORDER BY average_rating DESC;
